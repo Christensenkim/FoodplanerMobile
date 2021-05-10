@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, mSocket?.id() + "",Toast.LENGTH_SHORT).show()
 
 
+        mSocket?.emit("test")
     }
 
     fun Tester(view: View) {
