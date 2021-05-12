@@ -1,6 +1,6 @@
 package com.example.foodplanermobile.model
 
-class WeekDTO(
+class MealDto (
     var id: Int,
-    var name: String
+    var name: String,
 )
