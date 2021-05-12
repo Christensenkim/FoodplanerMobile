@@ -8,8 +8,8 @@ import com.example.foodplanermobile.services.adapters.WeekOverviewAdapter
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var weekList: ListView
-    var listWeekAdapter: WeekOverviewAdapter? = null
+    private lateinit var weekList: ListView
+    private var listWeekAdapter: WeekOverviewAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
