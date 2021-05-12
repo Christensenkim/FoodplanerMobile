@@ -1,5 +1,6 @@
 package com.example.foodplanermobile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,5 +31,10 @@ class MainActivity : AppCompatActivity() {
     fun Tester(view: View) {
         mSocket?.emit("test")
         Toast.makeText(this, mSocket?.id() + "",Toast.LENGTH_SHORT).show()
+    }
+
+    fun MealOverview(view: View) {
+        val intent = Intent(this, MealOverviewActivity::class.java)
+        startActivity(intent)
     }
 }
