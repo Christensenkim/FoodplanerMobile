@@ -10,5 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listOfWeeks"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Tester">Test</Button>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="255dp"
+        android:onClick="MealOverview"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
