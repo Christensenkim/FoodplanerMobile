@@ -2,7 +2,6 @@ package com.example.foodplanermobile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
@@ -24,17 +23,18 @@ class MainActivity : AppCompatActivity() {
         val foodplanerService: FoodplanerService = application as FoodplanerService
         mSocket = foodplanerService.getMSocket()
         mSocket?.connect()
+
         mSocket?.on("return-all-weeks") { args ->
             if (args[0] != null){
                 var data = args[0] as JSONArray
                 var weeksDB: ArrayList<WeekDto> = ArrayList()
+                weeksDB.clear()
                 for (i in 0 until data.length()) {
                     val week = data[i]
                     val weekdto = gson.fromJson(week.toString(), WeekDto::class.java)
                     weeksDB.add(weekdto)
                 }
                 weeks = weeksDB
-                weeksDB.clear()
             }
         }
         mSocket?.emit("get-weeks")
