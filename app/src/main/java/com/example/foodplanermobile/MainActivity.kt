@@ -37,10 +37,14 @@ class MainActivity : AppCompatActivity() {
                 weeksDB.clear()
             }
         }
+        mSocket?.emit("get-weeks")
+    }
+
+    fun createNewWeek(view: View) {
+        mSocket?.emit("create-new-week")
     }
 
     fun Tester(view: View) {
-        mSocket?.emit("get-weeks")
     }
 }
 
