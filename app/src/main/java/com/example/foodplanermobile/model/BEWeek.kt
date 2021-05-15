@@ -1,6 +1,8 @@
 package com.example.foodplanermobile.model
 
-class BEWeek(var id: Number,
+import java.io.Serializable
+
+class BEWeek (var id: Number,
              var weekNumber: Number,
              var UserID: Number,
              var monday: BEMealOverview?,
@@ -10,5 +12,5 @@ class BEWeek(var id: Number,
              var friday: BEMealOverview?,
              var saturday: BEMealOverview?,
              var sunday: BEMealOverview?,
-             var daysPlanned: Number) {
+             var daysPlanned: Number ): Serializable{
 }
