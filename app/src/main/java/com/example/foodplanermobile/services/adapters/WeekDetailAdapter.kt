@@ -11,7 +11,7 @@ import com.example.foodplanermobile.model.BEMealOverview
 
 class WeekDetailAdapter(context: Context, private val meals: Array<BEMealOverview?>) : ArrayAdapter<BEMealOverview?>(context, 0, meals)
 {
-    val weekDaysDanish = arrayOf<String>("mandag", "tirsdag", "onsdag", "Torsdag", "fredag", "lørdag", "søndag")
+    val weekDaysDanish = arrayOf("mandag", "tirsdag", "onsdag", "Torsdag", "fredag", "lørdag", "søndag")
     val nothingPlanned = "Ikke noget planlagt endnu"
     override fun getView(position: Int, v: View?, parent: ViewGroup): View {
         var v1: View? = v
