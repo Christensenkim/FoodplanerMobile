@@ -90,9 +90,3 @@ class MainActivity : AppCompatActivity() {
         mSocket?.emit("delete-week", weekID)
     }
 }
-
-    fun MealOverview(view: View) {
-        val intent = Intent(this, MealOverviewActivity::class.java)
-        startActivity(intent)
-    }
-}
