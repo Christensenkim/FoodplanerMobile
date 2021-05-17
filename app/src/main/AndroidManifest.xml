@@ -36,6 +36,11 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MealOverviewActivity"></meta-data>
         </activity>
+        <activity android:name=".MealDetailsActivity"
+            android:parentActivityName=".MealOverviewActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MealOverviewActivity"></meta-data>
+        </activity>
     </application>
 
 </manifest>

@@ -88,4 +88,3 @@ class MainActivity : AppCompatActivity() {
         mSocket?.emit("delete-week", weekID)
     }
 }
-
