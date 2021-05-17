@@ -3,13 +3,11 @@ package com.example.foodplanermobile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
-import android.widget.Toast
 import com.example.foodplanermobile.model.Week
 import com.example.foodplanermobile.services.adapters.WeekOverviewAdapter
 import android.view.View
-import com.example.foodplanermobile.model.MealDto
-import com.example.foodplanermobile.model.Week
 import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.gson.Gson
@@ -27,9 +25,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        weekOverviewList = findViewById(R.id.weekOverviewList)
-        listWeekAdapter = WeekOverviewAdapter(this, Week().getAll())
-        weekOverviewList.adapter = listWeekAdapter
 
         val foodplanerService: FoodplanerService = application as FoodplanerService
         mSocket = foodplanerService.getMSocket()
@@ -49,6 +44,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         mSocket?.emit("get-weeks")
+
+        weekOverviewList = findViewById(R.id.weekOverviewList)
+        listWeekAdapter = WeekOverviewAdapter(this, weeks)
+        weekOverviewList.adapter = listWeekAdapter
 
         weekOverviewList.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, WeekDetailedActivity::class.java)

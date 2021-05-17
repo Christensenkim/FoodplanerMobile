@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.BEMealOverview
 import com.example.foodplanermobile.model.BEWeek
+import com.example.foodplanermobile.model.MealDto
+import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.adapters.WeekDetailAdapter
 
 class WeekDetailedActivity : AppCompatActivity(){
@@ -16,10 +18,10 @@ class WeekDetailedActivity : AppCompatActivity(){
         setContentView(R.layout.activity_weekdetailed)
         weekDetailList = findViewById(R.id.weekdetailList)
 
-        val week = intent.getSerializableExtra("week") as? BEWeek
+        val week = intent.getSerializableExtra("week") as? WeekDto
 
         val weekNumber = findViewById<TextView>(R.id.weekNumber)
-        val mealArray = arrayOfNulls<BEMealOverview>(7)
+        val mealArray = arrayOfNulls<MealDto>(7)
         if (week != null) {
             mealArray[0] = week.monday
             mealArray[1] = week.tuesday

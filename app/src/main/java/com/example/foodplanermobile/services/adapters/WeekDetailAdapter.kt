@@ -8,8 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.foodplanermobile.R
 import com.example.foodplanermobile.model.BEMealOverview
+import com.example.foodplanermobile.model.MealDto
 
-class WeekDetailAdapter(context: Context, private val meals: Array<BEMealOverview?>) : ArrayAdapter<BEMealOverview?>(context, 0, meals)
+class WeekDetailAdapter(context: Context, private val meals: Array<MealDto?>) : ArrayAdapter<MealDto?>(context, 0, meals)
 {
     val weekDaysDanish = arrayOf("mandag", "tirsdag", "onsdag", "Torsdag", "fredag", "lørdag", "søndag")
     val nothingPlanned = "Ikke noget planlagt endnu"
