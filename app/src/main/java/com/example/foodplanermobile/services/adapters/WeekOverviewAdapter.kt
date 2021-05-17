@@ -10,7 +10,8 @@ import com.example.foodplanermobile.R
 import com.example.foodplanermobile.model.BEWeek
 import com.example.foodplanermobile.model.WeekDto
 
-class WeekOverviewAdapter(context: Context, private val weeks: ArrayList<WeekDto>) : ArrayAdapter<WeekDto>(context, 0, weeks)
+class WeekOverviewAdapter(context: Context, private val weeks: ArrayList<WeekDto>) :
+    ArrayAdapter<WeekDto>(context, 0, weeks)
 {
 
     override fun getView(position: Int, v: View?, parent: ViewGroup): View {

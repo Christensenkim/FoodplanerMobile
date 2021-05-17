@@ -3,8 +3,8 @@ package com.example.foodplanermobile.model
 import java.io.Serializable
 
 class WeekDto(
-    var id: Int,
-    var weekNumber: Int,
+    var id: Number,
+    var weekNumber: Number,
     var monday: MealDto?,
     var tuesday: MealDto?,
     var wednesday: MealDto?,
@@ -12,5 +12,5 @@ class WeekDto(
     var friday: MealDto?,
     var saturday: MealDto?,
     var sunday: MealDto?,
-    var daysPlanned: Int
+    var daysPlanned: Number
 ): Serializable
