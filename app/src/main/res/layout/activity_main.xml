@@ -9,6 +9,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="Tester">Test</Button>
+        android:onClick="deleteWeek">Test</Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

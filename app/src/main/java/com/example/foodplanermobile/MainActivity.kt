@@ -3,6 +3,8 @@ package com.example.foodplanermobile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.foodplanermobile.model.MealDto
+import com.example.foodplanermobile.model.Week
 import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.gson.Gson
@@ -44,7 +46,24 @@ class MainActivity : AppCompatActivity() {
         mSocket?.emit("create-new-week")
     }
 
-    fun Tester(view: View) {
+    fun updateWeek(view: View) {
+        val week = Week(
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+        )
+        val weekJson = gson.toJson(week)
+        mSocket?.emit("update-week-mobile", weekJson)
+    }
+
+    fun deleteWeek(view: View) {
+        val weekID = 1
+        mSocket?.emit("delete-week", weekID)
     }
 }
 
