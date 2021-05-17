@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         mSocket = app.getMSocket()
         mSocket?.connect()
 
-        Toast.makeText(this, mSocket?.id() + "",Toast.LENGTH_SHORT).show()
-
-
         mSocket?.emit("test")
     }
 

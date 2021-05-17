@@ -2,6 +2,7 @@ package com.example.foodplanermobile
 
 import android.app.ListActivity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,22 +13,38 @@ import com.example.foodplanermobile.model.BEMeal
 import com.example.foodplanermobile.model.Meal
 
 class MealOverviewActivity : ListActivity() {
+
+    var selectedMeal: BEMeal? = null
+    var allMeals: Array<BEMeal>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        listAdapter = MealAdapter(this, Meal().getAll())
+        allMeals = Meal.getAll()
+        listAdapter = MealAdapter(this, allMeals!!)
+
     }
 
     override fun onListItemClick(parent: ListView?,
                                  v: View?, position: Int, id: Long) {
-        // position is in the list!
-        // first get the name of the person clicked
-        val name = Meal().getAll()[position].name
-        // and a greeting
-        Toast.makeText(
-                this,
-                "Hi $name! Have you done your homework?",
-                Toast.LENGTH_LONG
-        ).show()
+//        // position is in the list!
+//        // first get the name of the person clicked
+//        val name = Meal().getAll()[position].name
+//
+//        // and a greeting
+//        Toast.makeText(
+//                this,
+//                "Hi $name! Have you done your homework?",
+//                Toast.LENGTH_LONG
+//        ).show()
+
+        val intent = Intent(this, MealDetailsActivity::class.java)
+        selectedMeal = allMeals!![position]
+        if (selectedMeal != null) {
+            intent.putExtra("meal", selectedMeal)
+            Toast.makeText(this, "You have clicked ${selectedMeal!!.name}", Toast.LENGTH_LONG).show()
+            startActivity(intent)
+        }
+
     }
 }
 
