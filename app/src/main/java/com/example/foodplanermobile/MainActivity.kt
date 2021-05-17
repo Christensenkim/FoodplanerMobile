@@ -42,16 +42,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 weeks = weeksDB
             }
+            runOnUiThread{
+                listWeekAdapter = WeekOverviewAdapter(this, weeks)
+                weekOverviewList.adapter = listWeekAdapter
+            }
         }
         mSocket?.emit("get-weeks")
 
         weekOverviewList = findViewById(R.id.weekOverviewList)
-        while (weeks.size == 0) {
-            Thread.sleep(100)
-            Log.d("TAG", "venter")
-        }
-        listWeekAdapter = WeekOverviewAdapter(this, weeks)
-        weekOverviewList.adapter = listWeekAdapter
 
         Log.d("TAG", "antal = " + weeks.size)
 
