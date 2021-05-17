@@ -91,3 +91,8 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+    fun MealOverview(view: View) {
+        val intent = Intent(this, MealOverviewActivity::class.java)
+        startActivity(intent)
+    }
+}
