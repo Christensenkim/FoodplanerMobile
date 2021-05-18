@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +11,20 @@
         android:id="@+id/weekOverviewList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="createNewWeek">Test</Button>
+        android:id="@+id/bottomNav"
+        android:layout_margin="30dp"
+        android:background="@drawable/bg"
+        android:elevation="2dp"
+        app:itemIconSize="30dp"
+        app:menu="@menu/menu_items"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/item_selector"
+        android:foregroundGravity="bottom"
+        android:layout_alignParentBottom="true"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
