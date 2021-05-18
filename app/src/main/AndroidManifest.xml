@@ -3,6 +3,11 @@
     package="com.example.foodplanermobile">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +19,16 @@
         android:name=".services.FoodplanerService"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".MainActivity">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".MealDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +50,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MealOverviewActivity"></meta-data>
         </activity>
-        <activity android:name=".MealDetailsActivity"
+        <activity android:name=".MainActivity"
             android:parentActivityName=".MealOverviewActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MealOverviewActivity"></meta-data>

@@ -7,20 +7,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageButton
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:onClick="takeAPicture"
+            android:id="@+id/MealPicture"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Opskrift:"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="20dp"
-            />
-        <TextView
+            android:textSize="20dp"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/MealDetailName"
-            android:text=""
-            />
+            android:text=""/>
 
         <TextView
             android:layout_width="match_parent"
@@ -28,14 +34,12 @@
             android:text="Beskrivelse:"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="20dp"
-            />
-        <TextView
+            android:textSize="20dp"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/MealDetailDescription"
-            android:text=""
-            />
+            android:text=""/>
 
         <TextView
             android:layout_width="match_parent"
@@ -43,13 +47,11 @@
             android:text="Ingredientser:"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="20dp"
-            />
-        <TextView
+            android:textSize="20dp"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/MealDetailIngredients"
-            />
+            android:id="@+id/MealDetailIngredients"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -57,13 +59,22 @@
             android:text="Sådan gør du:"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="20dp"
-            />
-        <TextView
+            android:textSize="20dp"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/MealDetailDirections"
-            />
+            android:id="@+id/MealDetailDirections"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.90"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="createNewMeal">Opret</Button>
 
     </LinearLayout>
 
