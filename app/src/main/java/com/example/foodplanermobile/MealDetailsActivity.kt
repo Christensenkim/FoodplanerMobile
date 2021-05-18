@@ -11,12 +11,14 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import com.example.foodplanermobile.model.BEMeal
 import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
@@ -31,14 +33,18 @@ class MealDetailsActivity : AppCompatActivity()  {
     var mSocket: Socket? = null
     val gson: Gson = Gson()
 
+    var newMeal = true;
     var mFile: File? = null
     private val PERMISSION_REQUEST_CODE = 1
     val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE_BY_FILE = 101
 
+    var meal: BEMeal? = null
     var mealName: TextView? = null
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
     var mealDirections: TextView? = null
+    var save: Button? = null
+    var delete: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,14 +58,20 @@ class MealDetailsActivity : AppCompatActivity()  {
         mealDescription = findViewById(R.id.MealDetailDescription)
         mealIngredients = findViewById(R.id.MealDetailIngredients)
         mealDirections = findViewById(R.id.MealDetailDirections)
+        save = findViewById(R.id.saveButton)
+        delete = findViewById(R.id.deleteButton)
+        delete?.isVisible = false
 
         if (intent.extras != null) {
-            val meal = intent.getSerializableExtra("meal") as BEMeal
+            save?.text = "Opdater"
+            newMeal = true
+            delete?.isVisible = true
+            meal = intent.getSerializableExtra("meal") as BEMeal
 
-            mealName?.text = meal.name
-            mealDescription?.text = meal.description
-            mealIngredients?.text = meal.ingredients
-            mealDirections?.text = meal.directions
+            mealName?.text = meal?.name
+            mealDescription?.text = meal?.description
+            mealIngredients?.text = meal?.ingredients
+            mealDirections?.text = meal?.directions
         }
         checkPermissions()
     }
@@ -72,8 +84,19 @@ class MealDetailsActivity : AppCompatActivity()  {
             directions = mealDirections?.text.toString(),
             description = mealDescription?.text.toString()
         )
-        val mealJson = gson.toJson(mealToSave)
-        mSocket?.emit("createMeal-mobile", mealJson)
+
+        if (newMeal == true){
+            val mealJson = gson.toJson(mealToSave)
+            mSocket?.emit("createMeal-mobile", mealJson)
+        } else {
+            mealToSave.id = meal?.id!!
+            val mealJson = gson.toJson(mealToSave)
+            mSocket?.emit("updateMeal-mobile", mealJson)
+        }
+    }
+
+    fun deleteMeal(view: View){
+        mSocket?.emit("deleteMeal", meal?.id)
     }
 
 
