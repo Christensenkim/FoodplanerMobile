@@ -6,5 +6,6 @@ class BEMeal(var id: Number,
              var name: String,
              var ingredients: String,
              var directions: String,
-             var description: String): Serializable {
+             var description: String,
+             var picName: String): Serializable {
 }
