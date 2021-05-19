@@ -13,9 +13,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
-import android.content.Intent
-import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +20,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import com.example.foodplanermobile.model.BEMeal
-import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.gson.Gson
 import io.socket.client.Socket

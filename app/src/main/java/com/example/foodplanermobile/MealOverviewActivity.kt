@@ -62,10 +62,10 @@ class MealOverviewActivity : AppCompatActivity() {
         mealOverviewList = findViewById(R.id.mealOverviewList)
 
         mealOverviewList.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this, WeekDetailedActivity::class.java)
+            val intent = Intent(this, MealDetailsActivity::class.java)
             val mealSelect = listMealAdapter!!.getItem(position)
             if (mealSelect != null) {
-                intent.putExtra("week", mealSelect)
+                intent.putExtra("meal", mealSelect)
                 startActivity(intent)
                 //Toast.makeText(this,"Du har valgt uge: ${weekSelect.weekNumber}", Toast.LENGTH_LONG ).show()
             }
