@@ -1,6 +1,8 @@
 package com.example.foodplanermobile
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import com.example.foodplanermobile.model.BEWeek
 import com.example.foodplanermobile.model.MealDto
 import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.adapters.WeekDetailAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WeekDetailedActivity : AppCompatActivity(){
     private lateinit var weekDetailList: ListView
@@ -35,5 +38,32 @@ class WeekDetailedActivity : AppCompatActivity(){
 
         weekDetailMealAdapter = WeekDetailAdapter(this, mealArray)
         weekDetailList.adapter = weekDetailMealAdapter
+
+        val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.home)
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+
+                R.id.recipes -> {
+                    val intent = Intent(this, MealOverviewActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+                R.id.addRecipe -> {
+                    val intent = Intent(this, CreateMealActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+            }
+            true
+        }
     }
 }

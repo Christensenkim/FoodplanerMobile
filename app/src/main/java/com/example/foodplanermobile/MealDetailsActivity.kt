@@ -13,6 +13,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +30,7 @@ import io.socket.client.Socket
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MealDetailsActivity : AppCompatActivity()  {
 
@@ -61,6 +65,33 @@ class MealDetailsActivity : AppCompatActivity()  {
         save = findViewById(R.id.saveButton)
         delete = findViewById(R.id.deleteButton)
         delete?.isVisible = false
+
+                val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.home)
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+
+                R.id.recipes -> {
+                    val intent = Intent(this, MealOverviewActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+                R.id.addRecipe -> {
+                    val intent = Intent(this, CreateMealActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
+                }
+            }
+            true
+        }
 
         if (intent.extras != null) {
             save?.text = "Opdater"
