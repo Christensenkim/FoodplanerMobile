@@ -40,20 +40,27 @@ class WeekDetailedActivity : AppCompatActivity(){
         weekDetailList.adapter = weekDetailMealAdapter
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.home)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
                 }
 
                 R.id.recipes -> {
                     val intent = Intent(this, MealOverviewActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
                 }
                 R.id.addRecipe -> {
                     val intent = Intent(this, CreateMealActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
                 }
             }
             true

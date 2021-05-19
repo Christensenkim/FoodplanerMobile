@@ -78,6 +78,8 @@ class MealOverviewActivity : AppCompatActivity() {
                 R.id.home -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
                 }
 
                 R.id.recipes -> {
@@ -86,6 +88,8 @@ class MealOverviewActivity : AppCompatActivity() {
                 R.id.addRecipe -> {
                     val intent = Intent(this, CreateMealActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0,0)
+                    true
                 }
             }
             true
