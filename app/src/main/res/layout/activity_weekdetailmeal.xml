@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30px"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:id="@+id/weekDetailMealHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="10px"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uge "
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/weekDetailMealNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/weekDetailMealDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/lineDividerHeader"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/weekDetailMealHeader"
+        android:background="@android:color/darker_gray" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lineDividerHeader"
+        android:paddingTop="5px"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/weekDetailMealName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Navn"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/weekDetailMealDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beskrivelse"
+            android:textSize="15sp"
+            android:textStyle="italic"/>
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNav"
+        android:layout_margin="30dp"
+        android:background="@drawable/bg"
+        android:elevation="2dp"
+        app:itemIconSize="30dp"
+        app:menu="@menu/menu_items"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/item_selector"
+        android:foregroundGravity="bottom"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>

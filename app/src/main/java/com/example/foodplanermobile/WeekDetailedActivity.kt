@@ -39,6 +39,17 @@ class WeekDetailedActivity : AppCompatActivity(){
         weekDetailMealAdapter = WeekDetailAdapter(this, mealArray)
         weekDetailList.adapter = weekDetailMealAdapter
 
+        weekDetailList.setOnItemClickListener {parent, view, position, id ->
+            val weekDayMealIDSelect = mealArray[position]?.id?.toInt()
+            if (weekDayMealIDSelect != null) {
+                val intent = Intent(this, WeekDetailMealActivity::class.java)
+                intent.putExtra("week", week)
+                intent.putExtra("weekday", position)
+                intent.putExtra("mealID", weekDayMealIDSelect)
+                startActivity(intent)
+            }
+        }
+
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
         bottomNavigationView.setSelectedItemId(R.id.home)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
