@@ -72,6 +72,7 @@ class MealOverviewActivity : AppCompatActivity() {
         }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.recipes)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
@@ -80,8 +81,7 @@ class MealOverviewActivity : AppCompatActivity() {
                 }
 
                 R.id.recipes -> {
-                    val intent = Intent(this, MealOverviewActivity::class.java)
-                    startActivity(intent)
+                    true
                 }
                 R.id.addRecipe -> {
                     val intent = Intent(this, CreateMealActivity::class.java)

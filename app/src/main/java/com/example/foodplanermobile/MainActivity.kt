@@ -30,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.home)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    true
                 }
 
                 R.id.recipes -> {

@@ -14,6 +14,7 @@ class MealDetailsActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_mealdetails)
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
+        bottomNavigationView.setSelectedItemId(R.id.home)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
