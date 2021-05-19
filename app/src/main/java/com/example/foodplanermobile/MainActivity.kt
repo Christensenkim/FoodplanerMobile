@@ -3,9 +3,11 @@ package com.example.foodplanermobile
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
-import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.Week
 import com.example.foodplanermobile.model.WeekDto
@@ -39,12 +41,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.recipes -> {
                     val intent = Intent(this, MealOverviewActivity::class.java)
-                    startActivity(intent)
-                    overridePendingTransition(0,0)
-                    true
-                }
-                R.id.addRecipe -> {
-                    val intent = Intent(this, CreateMealActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(0,0)
                     true
@@ -91,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun createNewWeek(view: View) {
+    fun createNewWeek() {
         mSocket?.emit("create-new-week")
     }
 
@@ -115,4 +111,19 @@ class MainActivity : AppCompatActivity() {
         mSocket?.emit("delete-week", weekID)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_bar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.addNew -> {
+                createNewWeek()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

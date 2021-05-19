@@ -9,8 +9,4 @@
         android:icon="@drawable/ic_home"
         android:id="@+id/recipes"/>
 
-    <item android:title="Tilføj opskrift"
-        android:icon="@drawable/ic_home"
-        android:id="@+id/addRecipe"/>
-
 </menu>

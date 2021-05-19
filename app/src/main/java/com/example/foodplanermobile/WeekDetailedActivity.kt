@@ -56,12 +56,6 @@ class WeekDetailedActivity : AppCompatActivity(){
                     overridePendingTransition(0,0)
                     true
                 }
-                R.id.addRecipe -> {
-                    val intent = Intent(this, CreateMealActivity::class.java)
-                    startActivity(intent)
-                    overridePendingTransition(0,0)
-                    true
-                }
             }
             true
         }
