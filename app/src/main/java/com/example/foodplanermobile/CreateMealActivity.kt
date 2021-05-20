@@ -205,6 +205,5 @@ class CreateMealActivity : AppCompatActivity() {
 
     private fun showImageFromFile(img: ImageButton, f: File) {
         img.setImageURI(Uri.fromFile(f))
-        img.setBackgroundColor(Color.RED)
     }
 }

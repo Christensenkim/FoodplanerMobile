@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.SelectedWeek
 import com.example.foodplanermobile.model.Week
@@ -62,11 +61,7 @@ class MainActivity : AppCompatActivity() {
         weekOverviewList.setOnItemClickListener { parent, view, position, id ->
             SelectedWeek.setWeek(listWeekAdapter!!.getItem(position))
             val intent = Intent(this, WeekDetailedActivity::class.java)
-            //val weekSelect = listWeekAdapter!!.getItem(position)
-            //if (weekSelect != null) {
-                //intent.putExtra("week", weekSelect)
                 startActivity(intent)
-                //Toast.makeText(this,"Du har valgt uge: ${weekSelect.weekNumber}", Toast.LENGTH_LONG ).show()
             }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView

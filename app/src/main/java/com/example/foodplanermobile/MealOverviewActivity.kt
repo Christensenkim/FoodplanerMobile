@@ -1,19 +1,13 @@
 package com.example.foodplanermobile
 
-import android.app.ListActivity
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.BEMeal
-import com.example.foodplanermobile.model.Meal
-import com.example.foodplanermobile.model.WeekDto
 import com.example.foodplanermobile.services.FoodplanerService
 import com.example.foodplanermobile.services.adapters.MealOverviewAdapter
-import com.example.foodplanermobile.services.adapters.WeekOverviewAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import io.socket.client.Socket
@@ -23,7 +17,6 @@ import java.util.ArrayList
 class MealOverviewActivity : AppCompatActivity() {
     private lateinit var mealOverviewList: ListView
     private var listMealAdapter: MealOverviewAdapter? = null
-    var selectedMeal: BEMeal? = null
     var allMeals: ArrayList<BEMeal> = ArrayList()
 
     var mSocket: Socket? = null
@@ -52,7 +45,6 @@ class MealOverviewActivity : AppCompatActivity() {
             runOnUiThread {
                 listMealAdapter = MealOverviewAdapter(this, allMeals)
                 mealOverviewList.adapter = listMealAdapter
-                //listAdapter = MealAdapter(this, allMeals!!)
             }
         }
         mSocket?.emit("getMeals")
@@ -65,7 +57,6 @@ class MealOverviewActivity : AppCompatActivity() {
             if (mealSelect != null) {
                 intent.putExtra("meal", mealSelect)
                 startActivity(intent)
-                //Toast.makeText(this,"Du har valgt uge: ${weekSelect.weekNumber}", Toast.LENGTH_LONG ).show()
             }
         }
 

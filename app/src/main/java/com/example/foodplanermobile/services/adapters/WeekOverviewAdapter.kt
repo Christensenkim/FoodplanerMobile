@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.foodplanermobile.R
-import com.example.foodplanermobile.model.BEWeek
 import com.example.foodplanermobile.model.WeekDto
 
 class WeekOverviewAdapter(context: Context, private val weeks: ArrayList<WeekDto>) :
