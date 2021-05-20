@@ -126,6 +126,7 @@
         android:textSize="14sp"
         android:layout_below="@+id/weekDetailMealDirectionsText"/>
     <Button
+        android:id="@+id/btnChangeMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottomNav"

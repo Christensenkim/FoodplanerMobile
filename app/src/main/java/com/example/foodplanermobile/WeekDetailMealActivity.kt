@@ -3,6 +3,7 @@ package com.example.foodplanermobile
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.*
@@ -29,6 +30,7 @@ class WeekDetailMealActivity : AppCompatActivity() {
         val mealDescView = findViewById<TextView>(R.id.weekDetailMealDesc)
         val mealIngredientView = findViewById<TextView>(R.id.weekDetailMealIngredients)
         val mealDirectionsView = findViewById<TextView>(R.id.weekDetailMealDirections)
+        val changeMealBtn = findViewById<Button>(R.id.btnChangeMeal)
 
         val week = SelectedWeek.getWeek()
         val weekDay = intent.getIntExtra("weekday", 0)
@@ -57,9 +59,12 @@ class WeekDetailMealActivity : AppCompatActivity() {
 
         mSocket?.emit("getMealByID", mealID)
 
-
-
-
+        changeMealBtn.setOnClickListener {
+            val intent = Intent(this, WeekDetailChangeMealActivity::class.java)
+            intent.putExtra("weekday", weekDay)
+            intent.putExtra("mealName", meal?.name)
+            startActivity(intent)
+        }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
         bottomNavigationView.setSelectedItemId(R.id.home)

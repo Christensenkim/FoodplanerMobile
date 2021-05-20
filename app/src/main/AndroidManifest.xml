@@ -60,6 +60,11 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".WeekDetailedActivity"></meta-data>
         </activity>
+        <activity android:name=".WeekDetailChangeMealActivity"
+            android:parentActivityName=".WeekDetailedActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".WeekDetailedActivity"></meta-data>
+        </activity>
     </application>
 
 </manifest>
