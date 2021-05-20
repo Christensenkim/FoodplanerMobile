@@ -3,6 +3,7 @@ package com.example.foodplanermobile
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import com.example.foodplanermobile.model.BEMeal
 import com.example.foodplanermobile.services.FoodplanerService
+import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
 import io.socket.client.Socket
 import java.io.File
@@ -105,6 +107,25 @@ class CreateMealActivity : AppCompatActivity() {
         mSocket?.emit("deleteMeal", meal?.id)
     }
 
+    private fun uploadImage(picName: String) {
+        var storageRef = storage.reference
+        var imagesRef: StorageReference? = storageRef.child("uploads/$picName")
+        var uploadTask = imagesRef?.putFile(Uri.fromFile(mFile))
+    }
+
+    fun downloadImage(picName: String?) {
+        val storageRef = storage.reference
+        val pathReference = storageRef.child("uploads/$picName")
+
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        pathReference.getBytes(ONE_MEGABYTE)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                mealPicture?.setImageBitmap(bmp)
+            }.addOnFailureListener {
+                Log.d("TAG", "Fail")
+            }
+    }
 
     fun takeAPicture(view: View) {
         mFile = getOutputMediaFile("Camera01") // create a file to save the image
