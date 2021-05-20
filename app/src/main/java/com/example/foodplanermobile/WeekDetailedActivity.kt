@@ -43,7 +43,12 @@ class WeekDetailedActivity : AppCompatActivity(){
                 intent.putExtra("weekday", position)
                 intent.putExtra("mealID", weekDayMealIDSelect)
                 startActivity(intent)
+            } else {
+                val intent = Intent(this, WeekDetailChangeMealActivity::class.java)
+                intent.putExtra("weekday", position)
+                startActivity(intent)
             }
+
         }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView

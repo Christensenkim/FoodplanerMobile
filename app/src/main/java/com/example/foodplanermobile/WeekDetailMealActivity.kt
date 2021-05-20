@@ -1,14 +1,19 @@
 package com.example.foodplanermobile
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.*
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import io.socket.client.Socket
 import org.json.JSONArray
@@ -18,7 +23,9 @@ class WeekDetailMealActivity : AppCompatActivity() {
     private val weekDaysDanish = arrayOf("mandag", "tirsdag", "onsdag", "Torsdag", "fredag", "lørdag", "søndag")
     var mSocket: Socket? = null
     var meal: BEMeal? = null
+    val storage = Firebase.storage
     val gson: Gson = Gson()
+    var weekDetailMealPicture: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +38,7 @@ class WeekDetailMealActivity : AppCompatActivity() {
         val mealIngredientView = findViewById<TextView>(R.id.weekDetailMealIngredients)
         val mealDirectionsView = findViewById<TextView>(R.id.weekDetailMealDirections)
         val changeMealBtn = findViewById<Button>(R.id.btnChangeMeal)
+        weekDetailMealPicture = findViewById(R.id.weekDetailMealPicture)
 
         val week = SelectedWeek.getWeek()
         val weekDay = intent.getIntExtra("weekday", 0)
@@ -53,6 +61,10 @@ class WeekDetailMealActivity : AppCompatActivity() {
                 mealDescView.text = meal?.description
                 mealIngredientView.text = meal?.ingredients
                 mealDirectionsView.text = meal?.directions
+                if (meal?.picName != null) {
+                    downloadImage(meal?.picName)
+                }
+
             }
         }
 
@@ -88,4 +100,17 @@ class WeekDetailMealActivity : AppCompatActivity() {
 
     }
 
+    fun downloadImage(picName: String?) {
+        val storageRef = storage.reference
+        val pathReference = storageRef.child("uploads/$picName")
+
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        pathReference.getBytes(ONE_MEGABYTE)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                weekDetailMealPicture?.setImageBitmap(bmp)
+            }.addOnFailureListener {
+                Log.d("TAG", "Fail")
+            }
+    }
 }

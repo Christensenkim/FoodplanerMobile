@@ -1,34 +1,19 @@
 package com.example.foodplanermobile
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.FileProvider
-import androidx.core.view.isVisible
 import com.example.foodplanermobile.model.BEMeal
 import com.example.foodplanermobile.services.FoodplanerService
-import com.google.gson.Gson
-import io.socket.client.Socket
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import io.socket.client.Socket
 
 class MealDetailsActivity : AppCompatActivity()  {
     var mSocket: Socket? = null

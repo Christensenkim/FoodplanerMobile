@@ -44,7 +44,12 @@ class WeekDetailChangeMealActivity : AppCompatActivity() {
             weekView.text = week.weekNumber.toString()
         }
         weekDayView.text = weekDaysDanish[weekDay].capitalize()
-        mealNameView.text = mealName
+        if (mealName != null){
+            mealNameView.text = mealName
+        } else
+        {
+            mealNameView.text = "Ikke noget planlagt for idag"
+        }
 
         val foodplanerService: FoodplanerService = application as FoodplanerService
         mSocket = foodplanerService.getMSocket()
