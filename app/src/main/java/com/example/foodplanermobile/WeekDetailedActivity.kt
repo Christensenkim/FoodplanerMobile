@@ -6,10 +6,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodplanermobile.model.BEMealOverview
-import com.example.foodplanermobile.model.BEWeek
-import com.example.foodplanermobile.model.MealDto
-import com.example.foodplanermobile.model.WeekDto
+import com.example.foodplanermobile.model.*
 import com.example.foodplanermobile.services.adapters.WeekDetailAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -21,7 +18,7 @@ class WeekDetailedActivity : AppCompatActivity(){
         setContentView(R.layout.activity_weekdetailed)
         weekDetailList = findViewById(R.id.weekdetailList)
 
-        val week = intent.getSerializableExtra("week") as? WeekDto
+        val week = SelectedWeek.getWeek()
 
         val weekNumber = findViewById<TextView>(R.id.weekNumber)
         val mealArray = arrayOfNulls<MealDto>(7)
@@ -38,6 +35,16 @@ class WeekDetailedActivity : AppCompatActivity(){
 
         weekDetailMealAdapter = WeekDetailAdapter(this, mealArray)
         weekDetailList.adapter = weekDetailMealAdapter
+
+        weekDetailList.setOnItemClickListener {parent, view, position, id ->
+            val weekDayMealIDSelect = mealArray[position]?.id?.toInt()
+            if (weekDayMealIDSelect != null) {
+                val intent = Intent(this, WeekDetailMealActivity::class.java)
+                intent.putExtra("weekday", position)
+                intent.putExtra("mealID", weekDayMealIDSelect)
+                startActivity(intent)
+            }
+        }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
         bottomNavigationView.setSelectedItemId(R.id.home)
