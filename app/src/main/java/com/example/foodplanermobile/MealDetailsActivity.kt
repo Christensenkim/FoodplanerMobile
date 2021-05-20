@@ -13,10 +13,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
@@ -35,13 +32,14 @@ import com.google.firebase.storage.ktx.storage
 
 class MealDetailsActivity : AppCompatActivity()  {
     var mSocket: Socket? = null
-    val gson: Gson = Gson()
+    val storage = Firebase.storage
 
     var meal: BEMeal? = null
     var mealName: TextView? = null
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
     var mealDirections: TextView? = null
+    var mealPicture: ImageView? = null
     var edit: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +54,7 @@ class MealDetailsActivity : AppCompatActivity()  {
         mealDescription = findViewById(R.id.MealDetailDescription)
         mealIngredients = findViewById(R.id.MealDetailIngredients)
         mealDirections = findViewById(R.id.MealDetailDirections)
+        mealPicture = findViewById(R.id.MealPicture)
         edit = findViewById(R.id.editButton)
 
         if (intent.extras != null) {
@@ -69,6 +68,20 @@ class MealDetailsActivity : AppCompatActivity()  {
             mealDirections?.text = meal?.directions
         }
 
+    }
+
+    fun downloadImage(picName: String?) {
+        val storageRef = storage.reference
+        val pathReference = storageRef.child("uploads/$picName")
+
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        pathReference.getBytes(ONE_MEGABYTE)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                mealPicture?.setImageBitmap(bmp)
+            }.addOnFailureListener {
+                Log.d("TAG", "Fail")
+            }
     }
 
     fun editMeal(view: View) {

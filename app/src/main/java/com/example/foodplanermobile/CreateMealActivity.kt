@@ -22,7 +22,9 @@ import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import com.example.foodplanermobile.model.BEMeal
 import com.example.foodplanermobile.services.FoodplanerService
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import io.socket.client.Socket
 import java.io.File
@@ -43,8 +45,10 @@ class CreateMealActivity : AppCompatActivity() {
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
     var mealDirections: TextView? = null
+    var mealPicture: ImageButton? = null
     var save: Button? = null
     var delete: Button? = null
+    val storage = Firebase.storage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,7 @@ class CreateMealActivity : AppCompatActivity() {
         mealDescription = findViewById(R.id.MealDetailDescription)
         mealIngredients = findViewById(R.id.MealDetailIngredients)
         mealDirections = findViewById(R.id.MealDetailDirections)
+        mealPicture = findViewById(R.id.MealPicture)
         save = findViewById(R.id.saveButton)
         delete = findViewById(R.id.deleteButton)
         delete?.isVisible = false
@@ -68,6 +73,8 @@ class CreateMealActivity : AppCompatActivity() {
             newMeal = false
             delete?.isVisible = true
             meal = intent.getSerializableExtra("meal") as BEMeal
+
+            downloadImage(meal?.picName)
 
             mealName?.text = meal?.name
             mealDescription?.text = meal?.description
