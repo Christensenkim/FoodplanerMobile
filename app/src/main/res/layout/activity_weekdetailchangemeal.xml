@@ -29,37 +29,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lineDividerHeader">
-    <TextView
-        android:id="@+id/weekDetailChangeMealNumberText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uge "
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/weekDetailChangeMealNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XX"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/weekDetailChangeMealNumberText"/>
-    <TextView
-        android:id="@+id/weekDetailChangeMealNumberdivider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" - "
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/weekDetailChangeMealNumber"/>
-    <TextView
-        android:id="@+id/weekDetailChangeMealDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XX"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/weekDetailChangeMealNumberdivider"/>
+        <TextView
+            android:id="@+id/weekDetailChangeMealNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uge "
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/weekDetailChangeMealNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/weekDetailChangeMealNumberText"/>
+        <TextView
+            android:id="@+id/weekDetailChangeMealNumberdivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/weekDetailChangeMealNumber"/>
+        <TextView
+            android:id="@+id/weekDetailChangeMealDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/weekDetailChangeMealNumberdivider"/>
     </LinearLayout>
 
     <TextView

@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         weekOverviewList.setOnItemClickListener { parent, view, position, id ->
             SelectedWeek.setWeek(listWeekAdapter!!.getItem(position))
             val intent = Intent(this, WeekDetailedActivity::class.java)
-                startActivity(intent)
-            }
+            startActivity(intent)
+        }
 
         val bottomNavigationView = findViewById<View>(R.id.bottomNav) as BottomNavigationView
         bottomNavigationView.setSelectedItemId(R.id.home)

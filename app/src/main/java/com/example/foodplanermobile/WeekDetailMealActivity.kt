@@ -16,13 +16,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import io.socket.client.Socket
-import org.json.JSONArray
 import org.json.JSONObject
 
 class WeekDetailMealActivity : AppCompatActivity() {
     private val weekDaysDanish = arrayOf("mandag", "tirsdag", "onsdag", "Torsdag", "fredag", "lørdag", "søndag")
     var mSocket: Socket? = null
-    var meal: BEMeal? = null
+    var meal: Meal? = null
     val storage = Firebase.storage
     val gson: Gson = Gson()
     var weekDetailMealPicture: ImageView? = null
@@ -55,7 +54,7 @@ class WeekDetailMealActivity : AppCompatActivity() {
 
         mSocket?.on("mealByID") { args ->
             var data = args[0] as JSONObject
-            meal = gson.fromJson(data.toString(), BEMeal::class.java)
+            meal = gson.fromJson(data.toString(), Meal::class.java)
             runOnUiThread {
                 mealNameView.text = meal?.name
                 mealDescView.text = meal?.description
@@ -64,7 +63,6 @@ class WeekDetailMealActivity : AppCompatActivity() {
                 if (meal?.picName != null) {
                     downloadImage(meal?.picName)
                 }
-
             }
         }
 

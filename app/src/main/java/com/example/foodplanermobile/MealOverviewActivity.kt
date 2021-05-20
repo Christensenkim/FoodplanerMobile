@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodplanermobile.model.BEMeal
+import com.example.foodplanermobile.model.Meal
 import com.example.foodplanermobile.services.FoodplanerService
 import com.example.foodplanermobile.services.adapters.MealOverviewAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,7 +17,7 @@ import java.util.ArrayList
 class MealOverviewActivity : AppCompatActivity() {
     private lateinit var mealOverviewList: ListView
     private var listMealAdapter: MealOverviewAdapter? = null
-    var allMeals: ArrayList<BEMeal> = ArrayList()
+    var allMeals: ArrayList<Meal> = ArrayList()
 
     var mSocket: Socket? = null
     val gson: Gson = Gson()
@@ -33,11 +33,11 @@ class MealOverviewActivity : AppCompatActivity() {
         mSocket?.on("allMeals") { args ->
             if (args[0] != null) {
                 var data = args[0] as JSONArray
-                var mealsDB: ArrayList<BEMeal> = ArrayList()
+                var mealsDB: ArrayList<Meal> = ArrayList()
                 mealsDB.clear()
                 for (i in 0 until data.length()) {
                     val meal = data[i]
-                    val mealdto = gson.fromJson(meal.toString(), BEMeal::class.java)
+                    val mealdto = gson.fromJson(meal.toString(), Meal::class.java)
                     mealsDB.add(mealdto)
                 }
                 allMeals = mealsDB

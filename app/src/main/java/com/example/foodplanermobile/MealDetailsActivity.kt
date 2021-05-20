@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodplanermobile.model.BEMeal
+import com.example.foodplanermobile.model.Meal
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -19,7 +19,7 @@ class MealDetailsActivity : AppCompatActivity()  {
     var mSocket: Socket? = null
     val storage = Firebase.storage
 
-    var meal: BEMeal? = null
+    var meal: Meal? = null
     var mealName: TextView? = null
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
@@ -43,14 +43,17 @@ class MealDetailsActivity : AppCompatActivity()  {
         edit = findViewById(R.id.editButton)
 
         if (intent.extras != null) {
-            meal = intent.getSerializableExtra("meal") as BEMeal
-
-            downloadImage(meal?.picName)
+            meal = intent.getSerializableExtra("meal") as Meal
 
             mealName?.text = meal?.name
             mealDescription?.text = meal?.description
             mealIngredients?.text = meal?.ingredients
             mealDirections?.text = meal?.directions
+
+            if (meal!!.picName != null)
+            {
+                downloadImage(meal?.picName)
+            }
         }
 
     }

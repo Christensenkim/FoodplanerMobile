@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.foodplanermobile.R
-import com.example.foodplanermobile.model.BEMeal
+import com.example.foodplanermobile.model.Meal
 
 
-class MealOverviewAdapter (context: Context, private val meals: ArrayList<BEMeal>) :
-    ArrayAdapter<BEMeal>(context, 0, meals)
+class MealOverviewAdapter (context: Context, private val meals: ArrayList<Meal>) :
+    ArrayAdapter<Meal>(context, 0, meals)
 {
 
     override fun getView(position: Int, v: View?, parent: ViewGroup): View {

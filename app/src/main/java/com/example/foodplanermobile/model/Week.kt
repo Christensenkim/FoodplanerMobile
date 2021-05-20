@@ -9,4 +9,4 @@ class Week (
     var friday: Number?,
     var saturday: Number?,
     var sunday: Number?,
-    )
+)

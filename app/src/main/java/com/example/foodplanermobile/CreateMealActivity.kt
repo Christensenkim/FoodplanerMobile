@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
-import com.example.foodplanermobile.model.BEMeal
+import com.example.foodplanermobile.model.Meal
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -40,7 +39,7 @@ class CreateMealActivity : AppCompatActivity() {
     private val PERMISSION_REQUEST_CODE = 1
     val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE_BY_FILE = 101
 
-    var meal: BEMeal? = null
+    var meal: Meal? = null
     var mealName: TextView? = null
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
@@ -72,10 +71,12 @@ class CreateMealActivity : AppCompatActivity() {
             save?.text = "Opdater"
             newMeal = false
             delete?.isVisible = true
-            meal = intent.getSerializableExtra("meal") as BEMeal
+            meal = intent.getSerializableExtra("meal") as Meal
 
-            downloadImage(meal?.picName)
-
+            if (meal!!.picName != null)
+            {
+                downloadImage(meal?.picName)
+            }
             mealName?.text = meal?.name
             mealDescription?.text = meal?.description
             mealIngredients?.text = meal?.ingredients
@@ -85,7 +86,7 @@ class CreateMealActivity : AppCompatActivity() {
     }
 
     fun createNewMeal(view: View) {
-        val mealToSave = BEMeal(
+        val mealToSave = Meal(
             id = 0,
             name = mealName?.text.toString(),
             ingredients = mealIngredients?.text.toString(),

@@ -6,10 +6,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodplanermobile.model.BEMeal
-import com.example.foodplanermobile.model.BEWeek
-import com.example.foodplanermobile.model.MealDto
-import com.example.foodplanermobile.model.SelectedWeek
+import com.example.foodplanermobile.model.*
 import com.example.foodplanermobile.services.FoodplanerService
 import com.example.foodplanermobile.services.adapters.MealOverviewAdapter
 import com.google.gson.Gson
@@ -20,7 +17,7 @@ import java.util.ArrayList
 class WeekDetailChangeMealActivity : AppCompatActivity() {
     private lateinit var mealListView: ListView
     private var listMealAdapter: MealOverviewAdapter? = null
-    var allMeals: ArrayList<BEMeal> = ArrayList()
+    var allMeals: ArrayList<Meal> = ArrayList()
     lateinit var selectedMealDto: MealDto
     var mSocket: Socket? = null
     val gson: Gson = Gson()
@@ -57,11 +54,11 @@ class WeekDetailChangeMealActivity : AppCompatActivity() {
         mSocket?.on("allMeals") { args ->
             if (args[0] != null) {
                 var data = args[0] as JSONArray
-                var mealsDB: ArrayList<BEMeal> = ArrayList()
+                var mealsDB: ArrayList<Meal> = ArrayList()
                 mealsDB.clear()
                 for (i in 0 until data.length()) {
                     val meal = data[i]
-                    val mealdto = gson.fromJson(meal.toString(), BEMeal::class.java)
+                    val mealdto = gson.fromJson(meal.toString(), Meal::class.java)
                     mealsDB.add(mealdto)
                 }
                 allMeals = mealsDB
@@ -93,9 +90,8 @@ class WeekDetailChangeMealActivity : AppCompatActivity() {
                 6 -> week?.sunday = selectedMealDto
             }
             SelectedWeek.setWeek(week)
-            val weekUpdate = BEWeek(
+            val weekUpdate = Week(
                 week!!.id,
-                week!!.weekNumber,
                 week!!.monday?.id,
                 week!!.tuesday?.id,
                 week!!.wednesday?.id,
