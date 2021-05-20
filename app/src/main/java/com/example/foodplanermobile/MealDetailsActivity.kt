@@ -103,6 +103,8 @@ class MealDetailsActivity : AppCompatActivity()  {
             delete?.isVisible = true
             meal = intent.getSerializableExtra("meal") as BEMeal
 
+            downloadImage(meal?.picName)
+
             mealName?.text = meal?.name
             mealDescription?.text = meal?.description
             mealIngredients?.text = meal?.ingredients
@@ -144,10 +146,12 @@ class MealDetailsActivity : AppCompatActivity()  {
         val pathReference = storageRef.child("uploads/$picName")
 
         val ONE_MEGABYTE: Long = 1024 * 1024
-        pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-            // Data for "images/island.jpg" is returned, use this as needed
+        pathReference.getBytes(ONE_MEGABYTE)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                mealPicture?.setImageBitmap(bmp)
         }.addOnFailureListener {
-            // Handle any errors
+            Log.d("TAG", "Fail")
         }
     }
 
