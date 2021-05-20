@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageButton
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:onClick="takeAPicture"
-            android:id="@+id/MealPicture"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Opskrift:"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/MealDetailName"
-            android:text=""/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Beskrivelse:"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/MealDetailDescription"
-            android:text=""/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingredientser:"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/MealDetailIngredients"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sådan gør du:"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/MealDetailDirections"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.90"/>
+        android:padding="0dp"
+        android:scrollbars="none"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+
+            >
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/MealPicture"/>
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="210dp"
-                android:onClick="createNewMeal"
-                android:text="Gem"
-                android:paddingLeft="10dp"
-                android:id="@+id/saveButton"/>
-            <Button
-                android:layout_width="wrap_content"
+                android:text="Opskrift:"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:onClick="deleteMeal"
-                android:id="@+id/deleteButton"
-                android:text="Slet"/>
+                android:id="@+id/MealDetailName"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Beskrivelse:"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MealDetailDescription"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredientser:"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MealDetailIngredients"
+                android:maxLines="2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sådan gør du:"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MealDetailDirections"
+                android:maxLines="2"/>
         </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollView1"
+
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="editMeal"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Opdater"
+            />
 
     </LinearLayout>
 
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/bottomNav"-->
-<!--        android:layout_margin="30dp"-->
-<!--        android:background="@drawable/bg"-->
-<!--        android:elevation="2dp"-->
-<!--        app:itemIconSize="30dp"-->
-<!--        app:menu="@menu/menu_items"-->
-<!--        app:labelVisibilityMode="labeled"-->
-<!--        app:itemIconTint="@drawable/item_selector"-->
-<!--        android:foregroundGravity="bottom"-->
-<!--        android:layout_alignParentBottom="true"/>-->
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
