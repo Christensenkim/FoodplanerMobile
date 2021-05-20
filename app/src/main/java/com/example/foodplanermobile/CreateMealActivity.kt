@@ -81,8 +81,11 @@ class CreateMealActivity : AppCompatActivity() {
             name = mealName?.text.toString(),
             ingredients = mealIngredients?.text.toString(),
             directions = mealDirections?.text.toString(),
-            description = mealDescription?.text.toString()
+            description = mealDescription?.text.toString(),
+            picName = UUID.randomUUID().toString()
         )
+
+        uploadImage(mealToSave.picName)
 
         if (newMeal == true){
             val mealJson = gson.toJson(mealToSave)
