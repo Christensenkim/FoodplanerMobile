@@ -4,13 +4,12 @@ import java.io.Serializable
 
 class BEWeek (var id: Number,
              var weekNumber: Number,
-             var UserID: Number,
-             var monday: BEMealOverview?,
-             var tuesday: BEMealOverview?,
-             var wednesday: BEMealOverview?,
-             var thursday: BEMealOverview?,
-             var friday: BEMealOverview?,
-             var saturday: BEMealOverview?,
-             var sunday: BEMealOverview?,
-             var daysPlanned: Number ): Serializable{
+             var monday: Number?,
+             var tuesday: Number?,
+             var wednesday: Number?,
+             var thursday: Number?,
+             var friday: Number?,
+             var saturday: Number?,
+             var sunday: Number?
+             ): Serializable{
 }

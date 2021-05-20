@@ -48,7 +48,6 @@ class WeekDetailMealActivity : AppCompatActivity() {
         mSocket?.on("mealByID") { args ->
             var data = args[0] as JSONObject
             meal = gson.fromJson(data.toString(), BEMeal::class.java)
-            println("backend says:" + meal?.name)
             runOnUiThread {
                 mealNameView.text = meal?.name
                 mealDescView.text = meal?.description
