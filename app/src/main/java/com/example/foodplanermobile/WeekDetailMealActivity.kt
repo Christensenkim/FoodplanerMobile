@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodplanermobile.model.BEMeal
-import com.example.foodplanermobile.model.Meal
-import com.example.foodplanermobile.model.MealDto
-import com.example.foodplanermobile.model.WeekDto
+import com.example.foodplanermobile.model.*
 import com.example.foodplanermobile.services.FoodplanerService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
@@ -30,8 +27,10 @@ class WeekDetailMealActivity : AppCompatActivity() {
         val weekDayView = findViewById<TextView>(R.id.weekDetailMealDay)
         val mealNameView = findViewById<TextView>(R.id.weekDetailMealName)
         val mealDescView = findViewById<TextView>(R.id.weekDetailMealDesc)
+        val mealIngredientView = findViewById<TextView>(R.id.weekDetailMealIngredients)
+        val mealDirectionsView = findViewById<TextView>(R.id.weekDetailMealDirections)
 
-        val week = intent.getSerializableExtra("week") as? WeekDto
+        val week = SelectedWeek.getWeek()
         val weekDay = intent.getIntExtra("weekday", 0)
         val mealID = intent.getIntExtra("mealID", 0)
 
@@ -51,6 +50,8 @@ class WeekDetailMealActivity : AppCompatActivity() {
             runOnUiThread {
                 mealNameView.text = meal?.name
                 mealDescView.text = meal?.description
+                mealIngredientView.text = meal?.ingredients
+                mealDirectionsView.text = meal?.directions
             }
         }
 
