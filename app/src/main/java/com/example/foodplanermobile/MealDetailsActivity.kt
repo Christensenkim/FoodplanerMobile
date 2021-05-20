@@ -3,6 +3,8 @@ package com.example.foodplanermobile
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -27,6 +29,9 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 class MealDetailsActivity : AppCompatActivity()  {
 
@@ -43,8 +48,10 @@ class MealDetailsActivity : AppCompatActivity()  {
     var mealDescription: TextView? = null
     var mealIngredients: TextView? = null
     var mealDirections: TextView? = null
+    var mealPicture: ImageButton? = null
     var save: Button? = null
     var delete: Button? = null
+    val storage = Firebase.storage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,16 +65,19 @@ class MealDetailsActivity : AppCompatActivity()  {
         mealDescription = findViewById(R.id.MealDetailDescription)
         mealIngredients = findViewById(R.id.MealDetailIngredients)
         mealDirections = findViewById(R.id.MealDetailDirections)
+        mealPicture = findViewById(R.id.MealPicture)
         save = findViewById(R.id.saveButton)
         delete = findViewById(R.id.deleteButton)
         delete?.isVisible = false
 
 
         if (intent.extras != null) {
+            newMeal = false
             save?.text = "Opdater"
-            newMeal = true
             delete?.isVisible = true
             meal = intent.getSerializableExtra("meal") as BEMeal
+
+            downloadImage(meal?.picName)
 
             mealName?.text = meal?.name
             mealDescription?.text = meal?.description
@@ -83,8 +93,11 @@ class MealDetailsActivity : AppCompatActivity()  {
             name = mealName?.text.toString(),
             ingredients = mealIngredients?.text.toString(),
             directions = mealDirections?.text.toString(),
-            description = mealDescription?.text.toString()
+            description = mealDescription?.text.toString(),
+            picName = UUID.randomUUID().toString()
         )
+
+        uploadImage(mealToSave.picName)
 
         if (newMeal == true){
             val mealJson = gson.toJson(mealToSave)
@@ -93,6 +106,26 @@ class MealDetailsActivity : AppCompatActivity()  {
             mealToSave.id = meal?.id!!
             val mealJson = gson.toJson(mealToSave)
             mSocket?.emit("updateMeal-mobile", mealJson)
+        }
+    }
+
+    private fun uploadImage(picName: String) {
+        var storageRef = storage.reference
+        var imagesRef: StorageReference? = storageRef.child("uploads/$picName")
+        var uploadTask = imagesRef?.putFile(Uri.fromFile(mFile))
+    }
+
+    fun downloadImage(picName: String?) {
+        val storageRef = storage.reference
+        val pathReference = storageRef.child("uploads/$picName")
+
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        pathReference.getBytes(ONE_MEGABYTE)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                mealPicture?.setImageBitmap(bmp)
+        }.addOnFailureListener {
+            Log.d("TAG", "Fail")
         }
     }
 
