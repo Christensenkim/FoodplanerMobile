@@ -87,21 +87,6 @@ class MainActivity : AppCompatActivity() {
         mSocket?.emit("create-new-week")
     }
 
-    fun updateWeek(view: View) {
-        val week = Week(
-            1,
-            1,
-            1,
-            1,
-            2,
-            1,
-            1,
-            1,
-        )
-        val weekJson = gson.toJson(week)
-        mSocket?.emit("update-week-mobile", weekJson)
-    }
-
     fun deleteWeek(view: View) {
         val weekID = 1
         mSocket?.emit("delete-week", weekID)

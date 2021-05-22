@@ -7,15 +7,24 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodplanermobile.model.*
+import com.example.foodplanermobile.services.FoodplanerService
 import com.example.foodplanermobile.services.adapters.WeekDetailAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.socket.client.Socket
 
 class WeekDetailedActivity : AppCompatActivity(){
     private lateinit var weekDetailList: ListView
     private var weekDetailMealAdapter: WeekDetailAdapter? = null
+    var mSocket: Socket? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weekdetailed)
+
+        val foodplanerService: FoodplanerService = application as FoodplanerService
+        mSocket = foodplanerService.getMSocket()
+        mSocket?.connect()
+
         weekDetailList = findViewById(R.id.weekdetailList)
 
         val week = SelectedWeek.getWeek()
@@ -71,5 +80,11 @@ class WeekDetailedActivity : AppCompatActivity(){
             }
             true
         }
+    }
+    fun deleteWeek(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        val weekID = SelectedWeek.getWeek()?.id
+        mSocket?.emit("delete-week", weekID)
+        startActivity(intent)
     }
 }
