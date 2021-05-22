@@ -2,11 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30px"
-    tools:context=".MainActivity">
+    android:padding="30px" >
 
     <TextView
         android:id="@+id/weekDetailMealNumberText"
@@ -57,45 +55,53 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@+id/lineDividerHeader"/>
-    <TextView
-        android:id="@+id/weekDetailMealDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Beskrivelse"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:layout_below="@+id/weekDetailMealName"/>
-    <View
-        android:id="@+id/lineDividerRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5px"
-        android:layout_marginBottom="5px"
-        android:layout_below="@id/weekDetailMealDesc"
-        android:background="@android:color/darker_gray" />
+
     <RelativeLayout
         android:id="@+id/weekDetailMealRecipeTopBlock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/lineDividerRecipe">
+        android:layout_below="@+id/weekDetailMealName">
         <LinearLayout
             android:id="@+id/weekDetailMealIngredientsBlock"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingEnd="205dp">
+            <View
+                android:id="@+id/lineDividerDescTop"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5px"
+                android:layout_marginBottom="5px"
+                android:layout_below="@id/weekDetailMealDesc"
+                android:background="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/weekDetailMealDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Beskrivelse"
+                android:textSize="14sp"
+                android:textStyle="italic"/>
+            <View
+                android:id="@+id/lineDividerRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5px"
+                android:layout_marginBottom="5px"
+                android:layout_below="@id/weekDetailMealDesc"
+                android:background="@android:color/darker_gray" />
             <TextView
                 android:id="@+id/weekDetailMealIngredientsText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ingredienser:"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/weekDetailMealIngredients"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Navn"
                 android:textSize="14sp"/>
@@ -105,26 +111,37 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginLeft="-205dp"
-            android:layout_marginTop="5px"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:background="@android:color/darker_gray"/>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/weekDetailMealDirectionsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instrukser:"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/weekDetailMealRecipeTopBlock"/>
-    <TextView
-        android:id="@+id/weekDetailMealDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Navn"
-        android:textSize="14sp"
-        android:layout_below="@+id/weekDetailMealDirectionsText"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/weekDetailMealRecipeTopBlock"
+        android:layout_above="@+id/btnChangeMeal">
+        <LinearLayout
+            android:id="@+id/weekDetailMealDescBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/weekDetailMealDirectionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instrukser:"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/weekDetailMealDirections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Navn"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/btnChangeMeal"
         android:layout_width="wrap_content"
@@ -138,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottomNav"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:background="@drawable/bg"
         android:elevation="2dp"
         app:itemIconSize="30dp"

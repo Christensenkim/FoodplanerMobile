@@ -10,13 +10,15 @@
     <ListView
         android:id="@+id/weekOverviewList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottomNav"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottomNav"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:background="@drawable/bg"
         android:elevation="2dp"
         app:itemIconSize="30dp"

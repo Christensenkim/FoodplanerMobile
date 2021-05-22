@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,106 +9,130 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottomButtons"
         android:scrollbars="none">
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/bottomButtons">
-            <ImageButton
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:onClick="takeAPicture"
-                android:id="@+id/MealPicture"/>
-            <TextView
+            android:padding="30px">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/MealDetailNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Opskrift:"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/MealDetailName"
-                android:text=""/>
+                android:hint="Titel på Opskrift">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/MealDetailName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/MealDetailRecipeTopBlock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Beskrivelse:"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/MealDetailDescription"
-                android:text=""/>
+                android:layout_alignParentLeft="true"
+                android:paddingTop="10px"
+                android:layout_below="@+id/MealDetailNameLayout">
+                <LinearLayout
+                    android:id="@+id/MealDetailIngredientsBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingEnd="205dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/MealDetailDescriptionLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kort beskrivelse">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/MealDetailDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="60"
+                        android:gravity="center_horizontal"
+                        android:textSize="14sp"
+                        android:textStyle="italic"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/MealDetailIngredientsTextLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingredienser">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/MealDetailIngredients"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="14sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredientser:"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/MealDetailIngredients"
-                android:maxLines="2"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sådan gør du:"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/MealDetailDirections"
-                android:maxLines="2"/>
-        </LinearLayout>
+                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/MealPicture"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="-205dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"
+                    android:onClick="takeAPicture"
+                    android:background="@android:color/darker_gray"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_alignStart="@+id/MealPicture"
+                    android:background="@drawable/ic_outline_camera_alt_24"/>
+            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/MealDetailDescBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/MealDetailRecipeTopBlock"
+                    android:orientation="vertical" >
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:id="@+id/MealDetailDirectionsLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Instruktioner">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/MealDetailDirections"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/bottomButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView1"
-
-        app:layout_constraintVertical_bias="1.0"
+        android:layout_alignParentBottom="true"
         tools:layout_editor_absoluteX="0dp">
-
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="210dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
             android:onClick="createNewMeal"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:text="Gem" />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
             android:backgroundTint="@android:color/holo_red_dark"
             android:onClick="deleteMeal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:text="Slet" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</RelativeLayout>
