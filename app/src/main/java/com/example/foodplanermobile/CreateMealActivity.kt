@@ -113,6 +113,8 @@ class CreateMealActivity : AppCompatActivity() {
 
     fun deleteMeal(view: View){
         mSocket?.emit("deleteMeal", meal?.id)
+        val intent = Intent(this, MealOverviewActivity::class.java)
+        startActivity(intent)
     }
 
     private fun uploadImage(picName: String) {
